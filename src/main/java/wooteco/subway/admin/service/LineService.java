@@ -39,6 +39,12 @@ public class LineService {
         lineRepository.deleteById(id);
     }
 
+    public void deleteLineByName(final String name) {
+        lineRepository.findByName(name).ifPresent(line ->{
+            lineRepository.delete(line);
+        });
+    }
+
     public void addLineStation(Long id, LineStationCreateRequest request) {
         // TODO: 구현
     }

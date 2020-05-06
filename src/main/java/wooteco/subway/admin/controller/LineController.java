@@ -81,4 +81,11 @@ public class LineController {
 		return ResponseEntity.ok().build();
 	}
 
+	@DeleteMapping("/lines")
+	@ResponseBody
+	public ResponseEntity deleteLineByName(@RequestBody String name) {
+		lineService.deleteLineByName(name);
+		return ResponseEntity.ok().build();
+	}
+
 }

@@ -19,7 +19,6 @@ function AdminLine() {
 
 	const onCreateSubwayLine = event => {
 		event.preventDefault();
-
 		const newSubwayLine = {
 			title: $subwayLineNameInput.value,
 			bgColor: $subwayLineColorInput.value
@@ -55,19 +54,22 @@ function AdminLine() {
 		$subwayLineColorInput.value = "";
 	};
 
-	const createSuccess = function () {
-		$subwayLineList.insertAdjacentHTML(
-			"beforeend",
-			subwayLinesTemplate(newSubwayLine)
-		)
-	}
-
 	const onDeleteSubwayLine = event => {
 		const $target = event.target;
+		const name = $target.closest(".subway-line-item").innerText;
 		const isDeleteButton = $target.classList.contains("mdi-delete");
 		if (isDeleteButton) {
-			mdi - delete
-				$target.closest(".subway-line-item").remove();
+			fetch('/lines', {
+				method: 'delete',
+				headers: {
+					'content-type': 'application/jason'
+				},
+				body: JSON.stringify({
+					name: name
+				})
+			}).then(res => {
+				$target.closest(".subway-line-item").remove()
+			})
 		}
 	};
 
