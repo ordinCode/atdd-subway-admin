@@ -23,4 +23,14 @@ class LineRepositoryTest {
 
         assertThat(persistLine.getId()).isNotNull();
     }
+
+    @Test
+    void findByName() {
+        Line line = new Line("강남역", LocalTime.of(5, 30), LocalTime.of(23, 30), 10);
+        lineRepository.save(line);
+
+        Line result = lineRepository.findByName(line.getName()).orElseGet();
+
+        assertThat(result.getName()).isEqualTo("강남역");
+    }
 }

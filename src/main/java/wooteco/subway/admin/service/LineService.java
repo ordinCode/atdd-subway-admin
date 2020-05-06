@@ -1,6 +1,7 @@
 package wooteco.subway.admin.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -51,4 +52,8 @@ public class LineService {
             .orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존지하지 않습니다"));
         return LineResponse.of(line);
     }
+
+	public Optional<Line> findByName(final String name) {
+        return lineRepository.findByName(name);
+	}
 }

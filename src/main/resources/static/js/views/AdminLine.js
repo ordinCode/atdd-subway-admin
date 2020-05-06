@@ -8,7 +8,7 @@ function AdminLine() {
 	const $subwayLineList = document.querySelector("#subway-line-list");
 	const $subwayLineNameInput = document.querySelector("#subway-line-name");
 	const $subwayLineColorInput = document.querySelector("#subway-line-color");
-	const $subwayLineFirstTime= document.querySelector("#first-time");
+	const $subwayLineFirstTime = document.querySelector("#first-time");
 	const $subwayLineLastTime = document.querySelector("#last-time");
 	const $subwayLineIntervalTime = document.querySelector("#interval-time");
 
@@ -32,25 +32,42 @@ function AdminLine() {
 			},
 			body: JSON.stringify({
 				name: $subwayLineNameInput.value,
-				startTime : $subwayLineFirstTime.value,
-				endTime : $subwayLineLastTime.value,
-				intervalTime : $subwayLineIntervalTime.value
+				startTime: $subwayLineFirstTime.value,
+				endTime: $subwayLineLastTime.value,
+				intervalTime: $subwayLineIntervalTime.value
 			})
-		}).then($subwayLineList.insertAdjacentHTML(
-			"beforeend",
-			subwayLinesTemplate(newSubwayLine)
-		))
+		}).then(res => {
+			if (res.ok) {
+				$subwayLineList.insertAdjacentHTML(
+					"beforeend",
+					subwayLinesTemplate(newSubwayLine)
+				)
+			} else {
+				alert("이미 존재하는 이름입니다")
+			}
+		})
 
 		subwayLineModal.toggle();
 		$subwayLineNameInput.value = "";
+		$subwayLineFirstTime.value = "";
+		$subwayLineLastTime.value = "";
+		$subwayLineIntervalTime.value = "";
 		$subwayLineColorInput.value = "";
 	};
+
+	const createSuccess = function () {
+		$subwayLineList.insertAdjacentHTML(
+			"beforeend",
+			subwayLinesTemplate(newSubwayLine)
+		)
+	}
 
 	const onDeleteSubwayLine = event => {
 		const $target = event.target;
 		const isDeleteButton = $target.classList.contains("mdi-delete");
 		if (isDeleteButton) {
-			$target.closest(".subway-line-item").remove();
+			mdi - delete
+				$target.closest(".subway-line-item").remove();
 		}
 	};
 
