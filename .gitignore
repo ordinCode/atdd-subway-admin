@@ -30,3 +30,7 @@ out/
 
 ### VS Code ###
 .vscode/
+/gradle/wrapper/gradle-wrapper.jar
+/gradle/wrapper/
+/gradlew
+/gradlew.bat
