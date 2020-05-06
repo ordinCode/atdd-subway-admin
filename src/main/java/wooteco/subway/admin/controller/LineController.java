@@ -26,11 +26,6 @@ public class LineController {
     @Autowired
     private LineService lineService;
 
-    @GetMapping("/admin-line")
-    public String adminLine() {
-        return "admin-line";
-    }
-
     @PostMapping("/lines")
     @ResponseBody
     public ResponseEntity createLine(@RequestBody LineRequest lineRequest) {
